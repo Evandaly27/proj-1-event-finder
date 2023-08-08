@@ -1,1 +1,1 @@
-# proj-1-travel-buddy
+# proj-1-event-finder
