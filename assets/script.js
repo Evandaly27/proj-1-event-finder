@@ -1,3 +1,34 @@
+// Parvathy
+// There will be a dropdown with zipcodes 
+  // provide list of zipcodes
+    // Denver, CU Boulder, Colo Springs, Morrison 
+  // submit button next to dropdown
+    // event listener on submit button
+    // grab input from dropdown and store into variable
+
+// Lizzie
+// header 
+  //name of the app; logo
+
+// Evan
+// history of zipcodes saved
+ //list of previously used zipcodes  
+    // when page loads use LS get item
+    // loop through and render zipcodes onto page using li's
+ // stretch goal; turn into buttons
+
+// Brandan
+// after selecting a zipcode and clicking submit they'll be shown list of results
+ //store zipcode into local storage
+    //want to use LS set item to store zipcode into local storage
+ //results to be rendered on cards
+    // use fetch call using the zipcode to ticketmaster API
+    //weather API will use zipcode to display weather for event date
+    //each card will have image of event,artist,date,time,cost-range,genre,venue
+ // back button 
+
+
+
 var requestOptions = {
     method: 'GET',
     redirect: 'follow'
