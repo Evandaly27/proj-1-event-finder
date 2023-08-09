@@ -19,3 +19,4 @@ Before user log off there should be an option to rate the service.
 
 
 
+# proj-1-event-finder
