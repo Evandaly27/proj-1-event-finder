@@ -54,6 +54,62 @@ displayPreviousZipCodes();
     //each card will have image of event,artist,date,time,cost-range,genre,venue
  // back button 
 
+const cityArray = ["Denver","Boulder", "Colorado Springs","Morrison"]
+const denverZipArray = ["80221","280229","3"]
+const boulderZipArray = ["94","0924","3984"]
+const coloSpringZipArray = ["1894","294","39898","0489","2980"]
+const morrisonZipArray = ["1894","294","399830000000000898","0489","2997480","94894"]
+var cityDropDown
+var zipDropDown
+function onload(){
+  cityDropDown = document.getElementById("cityDropDwn")
+  zipDropDown = document.getElementById("zipDropDwn")
+
+  //we need to get the page completely loaded so that we get the element bY ID
+
+  // var option2 = document.createElement("option");
+  // option2.text = "kottayam";
+  // cityDropDown.add(option2);
+
+  for (var cityIndex=0; cityIndex<cityArray.length;cityIndex++){
+    var option1 = document.createElement("option");
+    option1.text = cityArray[cityIndex]
+    cityDropDown.add(option1);
+
+
+  }
+}
+function onSelectCity(){
+  let cityName = cityDropDown.options[cityDropDown.selectedIndex].text;
+  var zipArray;
+  if(cityName=="Denver"){
+    zipArray = denverZipArray
+  }else if (cityName == "Boulder"){
+    zipArray = boulderZipArray
+  } else if (cityName == "ColorColo"){
+    
+  }
+  
+  zipDropDown.innerHTML='';
+
+
+  for (var zipIndex=0; zipIndex<zipArray.length;zipIndex++){
+    var option1 = document.createElement("option");
+    option1.text = zipArray[zipIndex]
+    zipDropDown.add(option1);
+  }
+
+}
+function onSubmitZip(){
+  let zipSeleccted = zipDropDown.options[zipDropDown.selectedIndex].text;
+  alert(zipSeleccted)
+
+}
+function onZipSelected(){
+  var btnSubmit = document.getElementById("submitzip")
+  btnSubmit.disabled=false
+}
+
 
 
 var requestOptions = {
