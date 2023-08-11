@@ -17,6 +17,33 @@
     // loop through and render zipcodes onto page using li's
  // stretch goal; turn into buttons
 
+ // Get references to HTML elements 
+ const cityDropdown = document.getElementById('cityDropDown');
+ const zipcodeList = document.getElementById('zipDropDown');
+ const submitButton = document.getElementById('submitzip')
+
+ const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
+
+// Display previously selected zip codes
+function displayPreviousZipCodes() {
+  zipcodeSelect.innerHTML = '';
+  savedZipCodes.forEach(zipcode => {
+    const li = document.createElement('li');
+    li.textContent = zipcode;
+    zipcodeList.appendChild(li);
+  });
+}
+
+// When the page loads
+function onLoad() {
+  displayPreviousZipCodes();
+}
+
+// displaying previous zipcodes selected 
+displayPreviousZipCodes();
+
+
+
 // Brandan
 // after selecting a zipcode and clicking submit they'll be shown list of results
  //store zipcode into local storage
