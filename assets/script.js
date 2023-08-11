@@ -59,8 +59,10 @@ function onSelectCity(){
     zipArray = denverZipArray
   }else if (cityName == "Boulder"){
     zipArray = boulderZipArray
-  } else if (cityName == "ColorColo"
+  } else if (cityName == "ColorColo"){
+    
   }
+  
   zipDropDown.innerHTML='';
 
 
