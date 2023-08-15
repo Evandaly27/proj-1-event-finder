@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <title>Event Finder</title>
-    <script src="assets/script.js"></script>
-
+    
 </head>
 <header></header>
 <body onload="onload()">
@@ -16,14 +15,20 @@
     <select name="city" id="cityDropDwn"  onchange="onSelectCity()">
         <option value="city">city</option>
     </select>
-
+    
     <label> Zip Code: </label>
     <select name="zip" id="zipDropDwn" onchange="onZipSelected()">
         <option value="zip">zip code</option>
     </select>
-
+    
     <button onclick="onSubmitZip()" disabled="true" id="submitzip"> 
         Search the select Zip Area
     </button>
+
+    <ul id="zipCodeList">
+
+    </ul>
+
+    <script src="assets/script.js"></script>
 </body>
 </html>
