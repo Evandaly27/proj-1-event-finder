@@ -17,34 +17,6 @@
     // loop through and render zipcodes onto page using li's
  // stretch goal; turn into buttons
 
- // Get references to HTML elements 
- const cityDropdown = document.getElementById('cityDropDown');
- const zipcodeList = document.getElementById('zipDropDown');
- const submitButton = document.getElementById('submitzip')
-
- const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
-
-// Display previously selected zip codes
-function displayPreviousZipCodes() {
-  // zipcodeSelect.innerHTML = '';
-  savedZipCodes.forEach(zipcode => {
-    const li = document.createElement('li');
-    li.textContent = zipcode;
-    zipcodeList.appendChild(li);  
-  });
-}
-
-// When the page loads
-function onLoad() {
-  alert("ooooooooooooooooooo")
-  displayPreviousZipCodes();
-}
-
-// displaying previous zipcodes selected 
-displayPreviousZipCodes();
-
-
-
 // Brandan
 // after selecting a zipcode and clicking submit they'll be shown list of results
 //  store zipcode into local storage
@@ -68,24 +40,20 @@ function onload(){
 
   //we need to get the page completely loaded so that we get the element bY ID
 
-  // var option2 = document.createElement("option");
-  // option2.text = "kottayam";
-  // cityDropDown.add(option2);
-
-  for (var cityIndex=0; cityIndex<cityArray.length;cityIndex++){
+  for (var cityIndex = 0; cityIndex < cityArray.length; cityIndex++) {
     var option1 = document.createElement("option");
-    option1.text = cityArray[cityIndex]
+    option1.text = cityArray[cityIndex];
     cityDropDown.add(option1);
-
 
   }
 }
-function onSelectCity(){
+
+function onSelectCity() {
   let cityName = cityDropDown.options[cityDropDown.selectedIndex].text;
   var zipArray;
-  if(cityName=="Denver"){
+  if (cityName == "Denver") {
     zipArray = denverZipArray
-  }else if (cityName == "Boulder"){
+  } else if (cityName == "Boulder") {
     zipArray = boulderZipArray
   } else if (cityName == "ColorColo"){
     zipArray=coloSpringZipArray
@@ -95,18 +63,45 @@ function onSelectCity(){
   zipDropDown.innerHTML='';
 
 
-  for (var zipIndex=0; zipIndex<zipArray.length;zipIndex++){
+  for (var zipIndex = 0; zipIndex < zipArray.length; zipIndex++) {
     var option1 = document.createElement("option");
-    option1.text = zipArray[zipIndex]
+    option1.text = zipArray[zipIndex];
     zipDropDown.add(option1);
   }
 
 }
-function onSubmitZip(){
+function onSubmitZip() {
   let zipSeleccted = zipDropDown.options[zipDropDown.selectedIndex].text;
+  
+  // save the selected zip code to localStorage
+  const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
+  savedZipCodes.push(zipSeleccted);
+  localStorage.setItem('zipCodes' , JSON.stringify(savedZipCodes));
+  
+  alert(zipSeleccted);
+  displayPreviousZipCodes();
+
+
+}
+
+// display previously selected zip codes
+function displayPreviousZipCodes() {
+  const zipCodeList = document.getElementById('zipCodeList');
+  zipCodeList.innerHTML = '';
+
+  const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
+  savedZipCodes.forEach(zipcode => {
+    const li = document.createElement('li');
+    li.textContent = zipcode;
+    zipCodeList.appendChild(li);
+  });
+}
+// when page loads
+  onload();
+  displayPreviousZipCodes();
+
   alert(zipSeleccted)
   getEventsForZipCode(zipSeleccted)
-}
 
 
 async function getEventsForZipCode( zipCode) {
@@ -135,6 +130,7 @@ function createEventsTable(eventsJson){
 
   })
 }
+
 
 function onZipSelected(){
   var btnSubmit = document.getElementById("submitzip")
