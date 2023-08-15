@@ -71,14 +71,14 @@ function onSelectCity() {
 
 }
 function onSubmitZip() {
-  let zipSeleccted = zipDropDown.options[zipDropDown.selectedIndex].text;
+  let zipSelected = zipDropDown.options[zipDropDown.selectedIndex].text;
   
   // save the selected zip code to localStorage
   const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
-  savedZipCodes.push(zipSeleccted);
+  savedZipCodes.push(zipSelected);
   localStorage.setItem('zipCodes' , JSON.stringify(savedZipCodes));
   
-  alert(zipSeleccted);
+  alert(zipSelected);
   displayPreviousZipCodes();
 
 
@@ -100,8 +100,8 @@ function displayPreviousZipCodes() {
   onload();
   displayPreviousZipCodes();
 
-  alert(zipSeleccted)
-  getEventsForZipCode(zipSeleccted)
+  alert(onZipSelected)
+  getEventsForZipCode(onZipSelected)
 
 
 async function getEventsForZipCode( zipCode) {
@@ -145,25 +145,25 @@ var requestOptions = {
     //mode: 'cors'
   };
   
-  // fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode=80465&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles", requestOptions)
-  //   .then(response => response.json())
-  //   .then(data => console.log(data))
-  //   .catch(error => console.log('error', error));
+  fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode=80465&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles", requestOptions)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log('error', error));
 
 
-  //  // Weather ConvolverNode
+   // Weather ConvolverNode
 
-  //  var myHeaders = new Headers();
-  //  myHeaders.append("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com");
-  //  myHeaders.append("X-RapidAPI-Key", "359cad1366msh63f358d57b233a3p1edbd6jsn942828c15f06");
+   var myHeaders = new Headers();
+   myHeaders.append("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com");
+   myHeaders.append("X-RapidAPI-Key", "359cad1366msh63f358d57b233a3p1edbd6jsn942828c15f06");
    
-  //  var requestOptions = {
-  //    method: 'GET',
-  //    headers: myHeaders,
-  //    redirect: 'follow'
-  //  };
+   var requestOptions = {
+     method: 'GET',
+     headers: myHeaders,
+     redirect: 'follow'
+   };
    
-  //  fetch("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Denver&days=3", requestOptions)
-  //    .then(response => response.json())
-  //    .then(data => console.log(data))
-  //    .catch(error => console.log('error', error));
+   fetch("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Denver&days=3", requestOptions)
+     .then(response => response.json())
+     .then(data => console.log(data))
+     .catch(error => console.log('error', error));
