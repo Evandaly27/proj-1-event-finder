@@ -11,6 +11,11 @@
 </head>
 <header></header>
 <body onload="onload()">
+    <style>
+    table, th, td {
+        border:1px solid black;
+      }
+    </style>
     
     <label> City: </label>
     <select name="city" id="cityDropDwn"  onchange="onSelectCity()">
@@ -25,5 +30,7 @@
     <button onclick="onSubmitZip()" disabled="true" id="submitzip"> 
         Search the select Zip Area
     </button>
+
+    <table id="eventsTable"></table>
 </body>
 </html>
