@@ -8,11 +8,11 @@ So that I can plan my leisure time effectively and make the most of local entert
 
 # Acceptance Criteria 
 
-# add an API that gives events like ticket master
-# add API that gives weather
-# create a button to "click" on zip code drop down and populate events in specific zip code
-# I want information about that event to populate
-# the weather to populate for the event in that area
+Added an API that gives events like ticket master
+Added API that gives weather
+Create a button to "click" on zip code drop down and populate events in specific zip code
+I want information about that event to populate
+The weather to populate for the event in that area
  
 
 
