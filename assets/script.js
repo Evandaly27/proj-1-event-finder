@@ -105,7 +105,7 @@ function displayPreviousZipCodes() {
 
 
 async function getEventsForZipCode( zipCode) {
-  const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode+"+
+  const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode="+
   zipCode+"&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles")
  //This API fetches events in 50 miles radius of the zip code.  Is that big radius required ?
   const eventsJson = await response.json();
