@@ -10,6 +10,11 @@
 </head>
 <header></header>
 <body onload="onload()">
+    <style>
+    table, th, td {
+        border:1px solid black;
+      }
+    </style>
     
     <label> City: </label>
     <select name="city" id="cityDropDwn"  onchange="onSelectCity()">
@@ -29,6 +34,8 @@
 
     </ul>
 
+    <table id="eventsTable"></table>
+    
     <script src="assets/script.js"></script>
 </body>
 </html>
