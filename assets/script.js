@@ -77,6 +77,12 @@ function onSubmitZip() {
   const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
   savedZipCodes.push(zipSelected);
   localStorage.setItem('zipCodes' , JSON.stringify(savedZipCodes));
+
+  // Hide the intial content and show the events container
+  document.getElementById('initialContent').style.display = 'none';
+  document.getElementById('eventsContainer').style.display = 'block';
+
+  getEventsForZipCode(zipSelected);
   
   alert(zipSelected);
   displayPreviousZipCodes();
