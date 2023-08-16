@@ -79,10 +79,11 @@ function onSubmitZip() {
   localStorage.setItem('zipCodes' , JSON.stringify(savedZipCodes));
 
   // Hide the intial content and show the events container
-  document.getElementById('initialContent').style.display = 'none';
-  document.getElementById('eventsContainer').style.display = 'block';
+  document.getElementById('zipCodeSection').style.display = 'none';
+  document.getElementById('eventsSection').style.display = 'block';
 
   getEventsForZipCode(zipSelected);
+  displayPreviousZipCodes();
   
   alert(zipSelected);
   displayPreviousZipCodes();
@@ -96,10 +97,44 @@ function displayPreviousZipCodes() {
   zipCodeList.innerHTML = '';
 
   const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
-  savedZipCodes.forEach(zipcode => {
-    const li = document.createElement('li');
-    li.textContent = zipcode;
-    zipCodeList.appendChild(li);
+  const recentZipCodes = savedZipCodes.slice(Math.max(savedZipCodes.length - 5, 0));
+
+  const zipCodesContainer = document.createElement('div');
+  zipCodesContainer.id = 'zipCodesContainer'
+
+  recentZipCodes.forEach(zipcode => {
+    const zipCodeLink = document.createElement('a');
+    zipCodeLink.className = 'zipCodeBox';
+    zipCodeLink.textContent = zipcode;
+
+    zipCodeLink.addEventListener('click', function() {
+      loadEventsForZipCode(zipcode);
+    });
+
+    zipCodesContainer.appendChild(zipCodeLink);
+
+  });
+
+  zipCodeList.appendChild(zipCodesContainer);
+
+}
+
+async function loadEventsForZipCode(zipCode) {
+  const eventsContainer = document.getElementById('eventsContainer');
+  eventsContainer.style.display = 'block'
+
+  const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode=" + zipCode + "&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles");
+
+  const eventsJson = await response.json();
+  createEventsTable(eventsJson);
+}
+
+function createEventsTable(eventsJson) {
+  eventsTable = document.getElementById("eventsTable");
+  eventsTable.innerHTML = '';
+
+  eventsJson._embedded.events.forEach((localEvent, index) => {
+
   });
 }
 // when page loads
