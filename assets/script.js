@@ -97,12 +97,14 @@ function displayPreviousZipCodes() {
   zipCodeList.innerHTML = '';
 
   const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
-  const recentZipCodes = savedZipCodes.slice(Math.max(savedZipCodes.length - 5, 0));
-
   const zipCodesContainer = document.createElement('div');
-  zipCodesContainer.id = 'zipCodesContainer'
+  zipCodesContainer.id = 'zipCodesContainer';
+  
+  // display the last 5 zip codes selected
+  const lastFiveZipCodes = savedZipCodes.slice(Math.max(savedZipCodes.length - 5,0));
+  
 
-  recentZipCodes.forEach(zipcode => {
+  lastFiveZipCodes.forEach(zipcode => {
     const zipCodeLink = document.createElement('a');
     zipCodeLink.className = 'zipCodeBox';
     zipCodeLink.textContent = zipcode;
