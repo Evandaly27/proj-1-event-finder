@@ -12,11 +12,11 @@
 
 // Evan
 // history of zipcodes saved
- //list of previously used zipcodes  
-    // when page loads use LS get item
-    // loop through and render zipcodes onto page using li's
+//list of previously used zipcodes  
+// when page loads use LS get item
+// loop through and render zipcodes onto page using li's
  // stretch goal; turn into buttons
-
+ 
 // Brandan
 // after selecting a zipcode and clicking submit they'll be shown list of results
 //  store zipcode into local storage
@@ -34,6 +34,10 @@ const coloSpringZipArray = ["80829","80922","80909"]
 const morrisonZipArray = ["80465"]
 var cityDropDown
 var zipDropDown
+
+var eventsTable = document.getElementById("eventsTable");
+var eventsSection = document.getElementById("eventsSection");
+
 function onload(){
   cityDropDown = document.getElementById("cityDropDwn")
   zipDropDown = document.getElementById("zipDropDwn")
@@ -70,6 +74,8 @@ function onSelectCity() {
   }
 
 }
+
+
 function onSubmitZip() {
   let zipSelected = zipDropDown.options[zipDropDown.selectedIndex].text;
   
@@ -85,7 +91,7 @@ function onSubmitZip() {
   getEventsForZipCode(zipSelected);
   displayPreviousZipCodes();
   
-  alert(zipSelected);
+  // alert(zipSelected);
   displayPreviousZipCodes();
 
 
@@ -131,82 +137,91 @@ async function loadEventsForZipCode(zipCode) {
   createEventsTable(eventsJson);
 }
 
-function createEventsTable(eventsJson) {
-  eventsTable = document.getElementById("eventsTable");
-  eventsTable.innerHTML = '';
-
-  eventsJson._embedded.events.forEach((localEvent, index) => {
-
-  });
-}
 // when page loads
   onload();
   displayPreviousZipCodes();
 
-  alert(onZipSelected)
-  getEventsForZipCode(onZipSelected)
+  // alert(onZipSelected)
+  // getEventsForZipCode(onZipSelected) ****THIS NEEDS TO RUN ON AN EVENT LISTENER!!!
 
 
-async function getEventsForZipCode( zipCode) {
-  const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode="+
-  zipCode+"&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles")
- //This API fetches events in 50 miles radius of the zip code.  Is that big radius required ?
-  const eventsJson = await response.json();
-  console.log("events list: - ")
-  console.log(eventsJson);
+// async function getEventsForZipCode(zipCode) {
+//   const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode="+
+//   zipCode+"&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles")
+//  //This API fetches events in 50 miles radius of the zip code.  Is that big radius required ?
+//   const eventsJson = await response.json();
+//   // console.log("events list: - ")
+//   console.log(eventsJson);
 
-  console.log(eventsJson._embedded.events[1].name )
-  createEventsTable(eventsJson)
-}
+//   // console.log(eventsJson._embedded.events[1].name )
+//   // createEventsTable(eventsJson)
+// }
+var btnSubmit = document.getElementById("submitzip")
 
 function createEventsTable(eventsJson){
-  eventsTable = document.getElementById("eventsTable")
+
+  
   eventsJson._embedded.events.forEach((localEvent,index)=>{
-    let innerHtmlStr;
-    innerHtmlStr="<tr><td> "+localEvent.name+"</td><td>"+
+
+    let innerHtmlStr="<tr><td> "+localEvent.name+"</td><td>"+
                  localEvent.dates.start.localDate+" "+localEvent.dates.start.localTime+"</td><td>"+
                  localEvent._embedded.venues[0].name+"</td> <td>"
                 //  <img src="+
                 //  localEvent.images[0].url+"/>
                 + "</tr>"
-    eventsTable.innerHTML =eventsTable.innerHTML+ innerHtmlStr
+    eventsTable.innerHTML = eventsTable.innerHTML + innerHtmlStr
+
+   
 
   })
 }
 
 
 function onZipSelected(){
-  var btnSubmit = document.getElementById("submitzip")
   btnSubmit.disabled=false
 }
 
 
+btnSubmit.addEventListener('click', async function(){
+  let zipSelected = zipDropDown.options[zipDropDown.selectedIndex].text;
 
-var requestOptions = {
-    method: 'GET',
-    //redirect: 'follow',
-    //mode: 'cors'
-  };
+  const response = await fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode="+
+  zipSelected+"&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles")
+ //This API fetches events in 50 miles radius of the zip code.  Is that big radius required ?
+  const eventsJson = await response.json();
+  // console.log("events list: - ")
+  console.log(eventsJson);
+
+  // console.log(eventsJson._embedded.events[1].name 
+  createEventsTable(eventsJson)
+  eventsSection.classList.remove('hide')
+})
+
+// var requestOptions = {
+  //   method: 'GET',
+  //   //redirect: 'follow',
+  //   //mode: 'cors'
+  // };
   
-  fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode=80465&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles", requestOptions)
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(error => console.log('error', error));
+  // fetch("https://app.ticketmaster.com/discovery/v2/events.json?postalCode=80465&apikey=RgDfJk0XjgYWckpaANHr8erWBMxmdx0t&radius=50&unit=miles", requestOptions)
+  //   .then(response => response.json())
+  //   .then(data => console.log(data))
+  //   .catch(error => console.log('error', error));
 
 
-   // Weather ConvolverNode
+  //  // Weather ConvolverNode
 
-   var myHeaders = new Headers();
-   myHeaders.append("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com");
-   myHeaders.append("X-RapidAPI-Key", "359cad1366msh63f358d57b233a3p1edbd6jsn942828c15f06");
+  //  var myHeaders = new Headers();
+  //  myHeaders.append("X-RapidAPI-Host", "weatherapi-com.p.rapidapi.com");
+  //  myHeaders.append("X-RapidAPI-Key", "359cad1366msh63f358d57b233a3p1edbd6jsn942828c15f06");
    
-   var requestOptions = {
-     method: 'GET',
-     headers: myHeaders,
-     redirect: 'follow'
-   };
+  //  var requestOptions = {
+  //    method: 'GET',
+  //    headers: myHeaders,
+  //    redirect: 'follow'
+  //  };
    
-   fetch("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Denver&days=3", requestOptions)
-     .then(response => response.json())
-     .then(data => console.log(data))
-     .catch(error => console.log('error', error));
+  //  fetch("https://weatherapi-com.p.rapidapi.com/forecast.json?q=Denver&days=3", requestOptions)
+  //    .then(response => response.json())
+  //    .then(data => console.log(data))
+  //    .catch(error => console.log('error', error));
