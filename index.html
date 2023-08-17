@@ -1,53 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="assets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <title>Event Finder</title>
-    
+
 </head>
+
 <body onload="onload()">
     <style>
-        table, th, td {
-            border:1px solid black;
+        table,
+        th,
+        td {
+            border: 1px solid black;
         }
-        </style>
-        <header id="eventsHeader">
-            <h1>gForce Event Finder</h1>
-            <p>Whether you're a social butterfly, an art lover, a sports fanatic, or someone who simply enjoys trying new things, EventFinder is your go-to destination for discovering and experiencing the best events. Join us today and never miss a moment worth celebrating!</p>
-        </header>
-    
-    <div id="zipCodeSection">
-   <label> City: </label>
-    <select name="city" id="cityDropDwn"  onchange="onSelectCity()">
-        <option value="city">city</option>
-    </select>
-    
-    <label> Zip Code: </label>
-    <select name="zip" id="zipDropDwn" onchange="onZipSelected()">
-        <option value="zip">zip code</option>
-    </select>
-    
-    <button onclick="onSubmitZip()" disabled="true" id="submitzip"> 
-        Search the select Zip Area
-    </button>
+    </style>
+    <header id="eventsHeader">
+        <h1>gForce Event Finder</h1>
+        <p>Whether you're a social butterfly, an art lover, a sports fanatic, or someone who simply enjoys trying new
+            things, EventFinder is your go-to destination for discovering and experiencing the best events. Join us
+            today and never miss a moment worth celebrating!</p>
+    </header>
 
+    <div id="zipCodeSection">
+        <div>
+            <label> City: </label>
+            <select name="city" id="cityDropDwn" onchange="onSelectCity()">
+                <option value="city">city</option>
+            </select>
+    
+            <label> Zip Code: </label>
+            <select name="zip" id="zipDropDwn" onchange="onZipSelected()">
+                <option value="zip">zip code</option>
+            </select>
+    
+            <button disabled="true" id="submitzip">
+                Search the select Zip Area
+            </button>
+        </div>
+
+        <div id="weatherSection"></div>
+    </div>
+<main >
     <ul id="zipCodeList">
 
-    </ul>
-</div>
-    <div id="eventsSection" style="display: none;">
-    <table id="eventsTable"></table>
-</div>
-
+    </ul> 
+    <div id="eventsSection" class="hide">
+        <table id="eventsTable"></table>
+    </div>
+</main>
     
+   
+
+
     <script src="./assets/weather.js"></script>
     <script src="assets/script.js"></script>
-    
+
 </body>
+
 </html>

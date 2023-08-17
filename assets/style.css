@@ -48,3 +48,30 @@ p {
     font-weight: bold;
 }
 
+.hide{
+    display: none;
+}
+
+main{
+    display: flex;
+    margin: 10px;
+}
+
+
+main ul {
+    margin-right: 6px;
+}
+#zipCodeSection{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+#weatherSection{
+    border: 3px black solid;
+    width: 25%;
+}
+
+.date_weather{
+    color: black
+}
