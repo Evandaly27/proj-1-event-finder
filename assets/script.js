@@ -34,7 +34,8 @@ const coloSpringZipArray = ["80829","80922","80909"]
 const morrisonZipArray = ["80465"]
 var cityDropDown
 var zipDropDown
-function onload(){
+
+function onloadEvent(){
   cityDropDown = document.getElementById("cityDropDwn")
   zipDropDown = document.getElementById("zipDropDwn")
 
@@ -72,6 +73,7 @@ function onSelectCity() {
 }
 function onSubmitZip() {
   let zipSelected = zipDropDown.options[zipDropDown.selectedIndex].text;
+  
   
   // save the selected zip code to localStorage
   const savedZipCodes = JSON.parse(localStorage.getItem('zipCodes')) || [];
@@ -159,6 +161,7 @@ async function getEventsForZipCode( zipCode) {
 
 function createEventsTable(eventsJson){
   eventsTable = document.getElementById("eventsTable")
+
   eventsJson._embedded.events.forEach((localEvent,index)=>{
     let innerHtmlStr;
     innerHtmlStr="<tr><td> "+localEvent.name+"</td><td>"+
@@ -167,6 +170,7 @@ function createEventsTable(eventsJson){
                 //  <img src="+
                 //  localEvent.images[0].url+"/>
                 + "</tr>"
+                
     eventsTable.innerHTML =eventsTable.innerHTML+ innerHtmlStr
 
   })
