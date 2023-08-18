@@ -16,6 +16,17 @@ THEN I am presented with the event's description, date, time and venue along wit
 WHEN I click on the New Search button
 THEN I am taken back to the homepage where I am able to conduct a new search and view zipcodes I have previously entered
 
+## Credits
+Google
+W3 Schools
+MDN Docs
+Bootcamp Activites & Challenges
+
+## Contributors
+Evan Daly
+Lizze Boone
+Parvathy Ajan
+Brandan Flores
 
 
 
